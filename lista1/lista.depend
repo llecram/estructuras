@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1536526260 source:d:\programas hechos por mi\lista\src\lista.cpp
+	"lista.h"
+
+1536526260 d:\programas hechos por mi\lista\include\lista.h
+
+1536526251 source:d:\programas hechos por mi\lista\src\nodo.cpp
+	"nodo.h"
+
+1536526251 d:\programas hechos por mi\lista\include\nodo.h
+
+1537195529 source:d:\programas hechos por mi\lista\main.cpp
+	<iostream>
+	<stdio.h>
+
+1540218107 source:d:\programas hechos por mi\lista1\main.cpp
+	<iostream>
+
+1536526260 source:d:\programas hechos por mi\lista1\src\lista.cpp
+	"lista.h"
+
+1536526260 d:\programas hechos por mi\lista1\include\lista.h
+
+1536526251 source:d:\programas hechos por mi\lista1\src\nodo.cpp
+	"nodo.h"
+
+1536526251 d:\programas hechos por mi\lista1\include\nodo.h
+
