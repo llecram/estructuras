@@ -1,25 +1,10 @@
 #include <iostream>
 using namespace std;
 template<class T>
-struct vector{
-    typedef T * niterator;
-    typedef T * riterator;
-    int tam;
-    T* p;
-    vector(int a){
-        tam=a;
-        p=new T[a];
-    }
-    niterator begin();
-    niterator end();
-    riterator rbegin();
-    riterator rend();
-};
-template<class T>
 class niterator{
 public:
-    vector<T>* m_i;
-    niterator(vector<T>*p=nullptr){
+    T* m_i;
+    niterator(T*p=nullptr){
         this->m_i=p;
     }
     niterator operator=(niterator<T> x){
@@ -29,8 +14,8 @@ public:
     bool operator!= (niterator<T> x){
         return m_i!=x.m_i;
     }
-    T operator*(){
-        return m_i->p;
+    T&operator*(){
+        return *m_i;
     }
     niterator operator++ (int){
         m_i++;
@@ -40,8 +25,8 @@ public:
 template<class T>
 class riterator{
 public:
-    vector<T>* m_i;
-    riterator(vector<T>*p=nullptr){
+    T* m_i;
+    riterator(T*p=nullptr){
         this->m_i=p;
     }
     riterator operator=(riterator<T> x){
@@ -51,38 +36,53 @@ public:
     bool operator!= (riterator<T> x){
         return m_i!=x.m_i;
     }
-    T operator*(){
-        return m_i->p;
+    T&operator*(){
+        return *m_i;
     }
-    riterator operator-- (int){
+    riterator operator++ (int){
         m_i--;
         return *this;
     }
 };
 template<class T>
-typename vector<T>::niterator vector<T>::begin(){
-    return niterator(p);
+struct vector{
+    typedef niterator<T> nor_iterator;
+    typedef riterator<T> rev_iterator;
+    int tam;
+    T* p;
+    vector(int a){
+        tam=a;
+        p=new T[a];
+    }
+    nor_iterator begin();
+    nor_iterator end();
+    rev_iterator rbegin();
+    rev_iterator rend();
+};
+template<class T>
+typename vector<T>::nor_iterator vector<T>::begin(){
+    return nor_iterator(p);
 }
 template<class T>
-typename vector<T>::niterator vector<T>::end(){
+typename vector<T>::nor_iterator vector<T>::end(){
     return p+tam;
 }
 
 template<class T>
-typename vector<T>::riterator vector<T>::rbegin(){
+typename vector<T>::rev_iterator vector<T>::rbegin(){
     return (p+tam)-1;
     //return riterator(p);
 }
 template<class T>
-typename vector<T>::riterator vector<T>::rend(){
+typename vector<T>::rev_iterator vector<T>::rend(){
     return p-1;
     //return p+tam;
 }
 int main()
 {
     vector<int> mivector(10);
-    vector<int>::niterator x;
-    vector<int>::riterator j;
+    vector<int>::nor_iterator x;
+    vector<int>::rev_iterator j;
     int i=0;
     for(x=mivector.begin();x!=mivector.end();x++){
         *x=i;
@@ -92,7 +92,7 @@ int main()
         cout<<*x;
     }
     cout<<endl;
-    for(j=mivector.rbegin();j!=mivector.rend();j--){
+    for(j=mivector.rbegin();j!=mivector.rend();j++){
         cout<<*j;
     }
     //cout<<*mivector.rbegin();
